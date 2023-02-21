@@ -66,3 +66,55 @@
 //         iScanner.close();
 //     }
 // }
+
+
+// HOME WORK 
+
+// Реализовать консольное приложение, которое:
+
+// Принимает от пользователя строку вида
+// text~num
+
+// Нужно рассплитить строку по ~, сохранить text в связный список на позицию num.
+// Если введено print~num, выводит строку из позиции num в связном списке и удаляет её из списка.
+
+     // text~num (например, word~4)
+// print~num (распечатать текст)
+
+// word~1
+// foo~5
+// qwerty~10
+// bar~5
+// print~10 -> qwerty
+// print~1 -> word
+// print~2 -> пустая строка или исключение NoSuchElementException
+// print~5 -> bar
+
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class program{
+    public static void main(String[] args){
+        ArrayList<String> arr = new ArrayList<String>();
+        for (int i = 0; i < 10; i++){
+            arr.add(null);
+        }
+        Scanner iScanner = new Scanner(System.in);
+        String str = "";
+        while (!str.equals("exit")){
+            System.out.println("Write line: ");
+            str = iScanner.nextLine();
+            if (!str.equals("print")){
+                String[] split = str.split("~");
+                String word = split[0];
+                String numberString = split[1];
+                int number = Integer.parseInt(numberString);
+                arr.add(number, word);
+            }
+            else if (str.equals("print")){
+                // System.out.println(Arrays.toString(split));
+            }
+        }
+        iScanner.close();
+    }
+}
