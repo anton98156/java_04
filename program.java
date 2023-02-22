@@ -90,29 +90,35 @@
 // print~2 -> пустая строка или исключение NoSuchElementException
 // print~5 -> bar
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class program{
     public static void main(String[] args){
-        ArrayList<String> arr = new ArrayList<String>();
+        String str = "";
+        ArrayList<String> arr = new ArrayList<String>(10);
         for (int i = 0; i < 10; i++){
-            arr.add(null);
+            arr.add(str);
         }
         Scanner iScanner = new Scanner(System.in);
-        String str = "";
         while (!str.equals("exit")){
-            System.out.println("Write line: ");
+            System.out.println("write line: ");
             str = iScanner.nextLine();
-            if (!str.equals("print")){
-                String[] split = str.split("~");
-                String word = split[0];
-                String numberString = split[1];
-                int number = Integer.parseInt(numberString);
+            String[] split = str.split("~");
+            String word = split[0];
+            String numberString = split[1];
+            int number = Integer.parseInt(numberString);
+            if(!word.equals("print")){
                 arr.add(number, word);
             }
-            else if (str.equals("print")){
-                // System.out.println(Arrays.toString(split));
+            else{
+                if((!arr.get(number).equals(""))){
+                    System.out.println(arr.get(number).toString());
+                    arr.remove(number);
+                }
+                else{
+                    System.out.println("the element does not exist");
+                }
+                
             }
         }
         iScanner.close();
